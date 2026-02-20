@@ -96,13 +96,51 @@ Type `exit` or `quit` to end the session.
 
 ---
 
+### REST API
+
+Start the FastAPI server:
+
+```bash
+uv run uvicorn src.api:app --reload
+```
+
+The API will be available at `http://127.0.0.1:8000`. Interactive docs are auto-generated at [`/docs`](http://127.0.0.1:8000/docs).
+
+#### `POST /query`
+
+Send a natural language question:
+
+```bash
+curl -X POST http://127.0.0.1:8000/query \
+  -H "Content-Type: application/json" \
+  -d '{"question": "Which country is the happiest?"}'
+```
+
+Response:
+
+```json
+{
+  "answer": "Finland has the highest happiness score of 7.632.",
+  "session_id": "a1b2c3d4-..."
+}
+```
+
+Pass the returned `session_id` in subsequent requests to maintain conversation context.
+
+#### `GET /health`
+
+Returns `{"status": "ok"}` — useful for uptime monitoring.
+
+---
+
 ## 📁 Project Structure
 
 ```
 csv-analysis-agent/
 ├── main.py              # Default entry point (placeholder)
 ├── src/
-│   └── agent.py         # Core agent logic — LLM, tools, prompt & CLI loop
+│   ├── agent.py         # Core agent logic — LLM, tools & prompt
+│   └── api.py           # FastAPI server — REST endpoint for the agent
 ├── data/
 │   └── 2018.csv         # World Happiness Report 2018 dataset
 ├── pyproject.toml       # Project metadata & dependencies
