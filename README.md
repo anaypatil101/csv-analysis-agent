@@ -1,6 +1,6 @@
 # 📊 CSV Analysis Agent
 
-An interactive CLI agent that lets you analyze CSV files using natural language. Powered by **OpenAI** and **LangChain**, it reads your data into a pandas DataFrame and answers questions conversationally — no code required from the user.
+An interactive agent that lets you analyze CSV files using natural language. Powered by **OpenAI** and **LangChain**, it reads your data into a pandas DataFrame and answers questions conversationally — no code required from the user.
 
 > Currently ships with the **World Happiness Report 2018** dataset as a demo, but can be adapted to any CSV.
 
